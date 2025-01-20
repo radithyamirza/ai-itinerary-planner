@@ -419,8 +419,7 @@ export default function Page() {
             don&apos;t forget to share it. :)
           </p>
         </motion.div>
-        <div className="absolute w-full bottom-0 inset-x-0 h-40 bg-gradient-to-b pointer-events-none select-none from-transparent dark:to-black to-white z-40" />
-        <div className="absolute w-full -bottom-20 h-72 md:h-full z-10 space-y-20">
+        <div className="absolute w-full -bottom-20 h-72 md:h-full z-10 space-y-10">
           <World data={sampleArcs} globeConfig={globeConfig} />
         </div>
           <motion.div
@@ -437,8 +436,9 @@ export default function Page() {
           }}
           className="div space-y-10"
         >
-          <p className=" text-center text-l text-gray-500">©️ 2025 Radithya Mirza Aribowo</p>
+          <p className=" text-bottom text-center text-l text-gray-500">©️ 2025 Radithya Mirza Aribowo</p>
         </motion.div>
+        <div className="absolute w-full bottom-0 inset-x-0 h-40 bg-gradient-to-b pointer-events-none select-none from-transparent dark:to-black to-white z-40" />
       </div>
     </div>
   );

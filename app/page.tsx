@@ -423,6 +423,22 @@ export default function Page() {
         <div className="absolute w-full -bottom-20 h-72 md:h-full z-10 space-y-20">
           <World data={sampleArcs} globeConfig={globeConfig} />
         </div>
+          <motion.div
+          initial={{
+            opacity: 0,
+            y: 100,
+          }}
+          animate={{
+            opacity: 1,
+            y: 0,
+          }}
+          transition={{
+            duration: 1,
+          }}
+          className="div space-y-10"
+        >
+          <p className=" text-center text-l text-gray-500">©️ 2025 Radithya Mirza Aribowo</p>
+        </motion.div>
       </div>
     </div>
   );

@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@radix-ui/react-slot": "^1.1.1",
     "@react-three/drei": "^9.121.2",
     "@react-three/fiber": "^9.0.0-alpha.8",
     "class-variance-authority": "^0.7.1",

@@ -2,6 +2,8 @@
 import React from "react";
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const World = dynamic(() => import("../components/ui/globe").then((m) => m.World), {
   ssr: false,
@@ -395,7 +397,18 @@ export default function Page() {
   ];
 
   return (
-    <div className="flex flex-row items-center justify-center py-20 h-screen dark:bg-black bg-white relative w-full space-y-8">
+    <div className="flex flex-col items-center justify-center py-20 h-screen dark:bg-black bg-white relative w-full">
+      <div className="flex flex-col justify-center items-center gap-3">
+        <h2 className="text-center text-xl md:text-4xl font-bold text-black dark:text-white">
+          AI Travel Itinerary Planner
+        </h2>
+        <p className="text-center text-base md:text-lg font-normal text-neutral-700 dark:text-neutral-200 max-w-md mt-2 mx-auto">
+          Plan it, make an unforgettable trip of your life.
+        </p>
+        <Link href={"/travel-plan"}>
+          <Button>Plan my trip</Button>
+        </Link>
+      </div>
       <div className="max-w-7xl mx-auto w-full relative overflow-hidden h-full md:h-[40rem] px-4">
         <motion.div
           initial={{
@@ -410,19 +423,16 @@ export default function Page() {
             duration: 1,
           }}
           className="div"
-        >
-          <h2 className="text-center text-xl md:text-4xl font-bold text-black dark:text-white">
-            We sell soap worldwide
-          </h2>
-          <p className="text-center text-base md:text-lg font-normal text-neutral-700 dark:text-neutral-200 max-w-md mt-2 mx-auto">
-            This globe is interactive and customizable. Have fun with it, and
-            don&apos;t forget to share it. :)
-          </p>
-        </motion.div>
-        <div className="absolute w-full -bottom-20 h-72 md:h-full z-10 space-y-10">
+        ></motion.div>
+        <div className="absolute w-full bottom-0 inset-x-0 h-40 bg-gradient-to-b pointer-events-none select-none from-transparent dark:to-black to-white z-40" />
+        <div className="absolute w-full h-72 md:h-full z-10">
           <World data={sampleArcs} globeConfig={globeConfig} />
         </div>
-        <div className="absolute w-full bottom-0 inset-x-0 h-40 bg-gradient-to-b pointer-events-none select-none from-transparent dark:to-black to-white z-40" />
+      </div>
+      <div className="flex flex-col justify-center items-center gap-3">
+        <p className="text-center text-base md:text-lg font-normal text-neutral-700 dark:text-neutral-200 max-w-md mt-2 mx-auto">
+        © 2025 Radithya Mirza Aribowo
+        </p>
       </div>
     </div>
   );

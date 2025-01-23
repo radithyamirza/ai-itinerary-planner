@@ -132,6 +132,7 @@ export default function TravelPlannerForm() {
                       disabled={(date) =>date < new Date() || 
                         date < addDays(form.getValues("startDate"), 1)}
                       initialFocus
+                      defaultMonth={form.getValues("endDate")}
                     />
                   </PopoverContent>
                 </Popover>

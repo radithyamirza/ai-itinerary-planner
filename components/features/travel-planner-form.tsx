@@ -3,7 +3,7 @@
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import { format } from "date-fns"
+import { addDays, format } from "date-fns"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -98,7 +98,7 @@ export default function TravelPlannerForm() {
           <div>
           <FormField
             control={form.control}
-            name="startDate"
+            name="endDate"
             render={({ field }) => (
               <FormItem className="flex flex-col">
                 <FormLabel>End Date</FormLabel>
@@ -126,7 +126,8 @@ export default function TravelPlannerForm() {
                       mode="single"
                       selected={field.value}
                       onSelect={field.onChange}
-                      disabled={(date) =>date < new Date() || date < form.getValues("startDate")}
+                      disabled={(date) =>date < new Date() || 
+                        date < addDays(form.getValues("startDate"), 1)}
                       initialFocus
                     />
                   </PopoverContent>

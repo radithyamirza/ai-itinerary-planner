@@ -82,7 +82,9 @@ export default function TravelPlannerForm() {
                     <Calendar
                       mode="single"
                       selected={field.value}
-                      onSelect={field.onChange}
+                      onSelect={(date)=>{field.onChange(date);
+                        form.setValue("endDate", addDays(date ?? new Date(), 1))
+                      }}
                       disabled={(date) =>date < new Date()}
                       initialFocus
                     />
@@ -124,7 +126,8 @@ export default function TravelPlannerForm() {
                   <PopoverContent className="w-auto p-0" align="start">
                     <Calendar
                       mode="single"
-                      selected={field.value}
+                      selected={form.getValues("startDate") 
+                        ? addDays(form.getValues("startDate"), 1) : field.value}
                       onSelect={field.onChange}
                       disabled={(date) =>date < new Date() || 
                         date < addDays(form.getValues("startDate"), 1)}

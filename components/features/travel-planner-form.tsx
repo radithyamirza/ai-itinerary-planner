@@ -29,6 +29,9 @@ import { CalendarIcon } from "lucide-react"
 const formSchema = z.object({
     startDate: z.date(),
     endDate: z.date(),
+    budget: z.number().min(0),
+    activities: z.array(z.string()).min(1),
+    destination: z.string().optional(),
   })
 
 
@@ -144,6 +147,25 @@ export default function TravelPlannerForm() {
             )}
           />
         </div>
+        </div>
+
+        <div className="flex gap-4">
+          <FormField
+            control={form.control}
+            name="budget"
+            render={({field}) => (
+              <FormItem>
+                <FormLabel>Budget</FormLabel>
+                <FormControl>
+                  <Input type="number" {...field}/>
+                </FormControl>
+                <FormMessage/>
+                <FormDescription>
+                  The total amount of money that you want to spend on your trip.
+                </FormDescription>
+              </FormItem>
+            )}
+          />
         </div>
         <Button type="submit">Submit</Button>
       </form>

@@ -1,7 +1,7 @@
 "use server";
 
-// import { db } from "@/db/drizzle";
-// import { plans } from "@/db/schema";
+import { db } from "@/db/drizzle";
+import { plans } from "@/db/schema";
 import { currentUser } from "@clerk/nextjs/server";
 import { z } from "zod";
 import { formSchema } from "./schema";

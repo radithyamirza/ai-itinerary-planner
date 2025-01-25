@@ -38,6 +38,7 @@ import {
 } from "@/components/ui/command";
 import { useRouter } from "next/navigation";
 import { formSchema } from "@/server/schema";
+import { generateTripItinerary } from "@/server/ai";
 
 
 
@@ -83,6 +84,12 @@ export default function TravelPlannerForm() {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    try {
+      await generateTripItinerary(values);
+      // router.push(`/plan/${planId}`);
+    } catch (error) {
+      console.error(error);
+    }
     console.log(values);
   }
 

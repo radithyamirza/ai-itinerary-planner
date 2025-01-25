@@ -37,14 +37,8 @@ import {
   CommandList,
 } from "@/components/ui/command";
 import { useRouter } from "next/navigation";
+import { formSchema } from "@/server/schema";
 
-export const formSchema = z.object({
-  startDate: z.date(),
-  endDate: z.date(),
-  budget: z.number().min(0),
-  activities: z.array(z.string()).min(1),
-  destination: z.string().optional(),
-});
 
 
 const activities = [

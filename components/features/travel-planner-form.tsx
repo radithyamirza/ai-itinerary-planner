@@ -85,8 +85,8 @@ export default function TravelPlannerForm() {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
-      await generateTripItinerary(values);
-      // router.push(`/plan/${planId}`);
+      const planId = await generateTripItinerary(values);
+      router.push(`/plan/${planId}`);
     } catch (error) {
       console.error(error);
     }

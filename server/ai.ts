@@ -40,5 +40,17 @@ export async function generateTripItinerary(formData: z.infer<typeof formSchema>
   const data = await response.json();
 
   const user = await currentUser();
-  console.log(data.choices[0].message.content)
+
+  const [plan] = await db
+    .insert(plans)
+    .values({
+      text: data.choices[0].message.content,
+      userId: user?.id,
+      budget,
+      startDate: startDate.toISOString(),
+      endDate: endDate.toISOString(),
+    })
+    .returning();
+
+  return plan.id;
 }

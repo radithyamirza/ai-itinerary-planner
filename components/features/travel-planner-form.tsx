@@ -3,6 +3,7 @@
 import { useState } from "react";
 
 import { z } from "zod";
+import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { addDays, format } from "date-fns";
@@ -220,7 +221,7 @@ export default function TravelPlannerForm() {
           )}
         />
 
-<FormField
+        <FormField
           control={form.control}
           name="activities"
           render={({ field }) => (
@@ -325,7 +326,12 @@ export default function TravelPlannerForm() {
           )}
         />
 
-        <Button type="submit">Submit</Button>
+        <div className="flex gap-4">
+          <Button type="submit">Submit</Button>
+          <Link href={"./"}>
+            <Button variant="outline">Back</Button>
+          </Link>
+        </div>
       </form>
     </Form>
   );

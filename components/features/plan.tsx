@@ -11,9 +11,14 @@ export default function Plan({ plan }: PlanProps) {
     <div className="flex flex-col gap-10 p-24 w-full items-center justify-center">
       <h1 className="text-4xl font-bold">Your Trip Plan</h1>
       <div dangerouslySetInnerHTML={{ __html: plan.text }} />
-      <Link href="/travel-planner">
+      <div className="flex gap-4">
+        <Link href="/travel-planner">
         <Button>Create a new plan</Button>
-      </Link>
+        </Link>
+        <Link href="../">
+              <Button variant="outline">Back</Button>
+        </Link>
+      </div>
     </div>
   );
 }

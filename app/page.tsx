@@ -397,7 +397,7 @@ export default function Page() {
   ];
 
   return (
-    <div className="flex flex-col items-center justify-center py-20 h-screen dark:bg-black relative w-full">
+    <div className="flex flex-col items-center justify-center py-5 h-screen dark:bg-black relative w-full">
       <div className="flex flex-col justify-center items-center gap-3">
         <h2 className="text-center text-xl md:text-4xl font-bold text-black dark:text-white">
           AI Travel Itinerary Planner
@@ -429,8 +429,8 @@ export default function Page() {
           <World data={sampleArcs} globeConfig={globeConfig} />
         </div>
       </div>
-      <div className="flex flex-col justify-center items-center gap-3">
-        <p className="text-center text-base md:text-sm font-normal text-neutral-700  max-w-md mt-2 mx-auto">
+      <div className="flex flex-col justify-center items-center">
+        <p className="text-center text-base md:text-sm font-normal text-neutral-700  max-w-md mt-20 mx-auto">
         © 2025 Radithya Mirza Aribowo
         </p>
       </div>

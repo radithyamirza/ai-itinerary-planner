@@ -214,7 +214,7 @@ export default function TravelPlannerForm() {
               </FormControl>
               <FormMessage />
               <FormDescription>
-                The total amount of money you want to spend on your trip.
+                The total amount of money you want to spend on your trip. In USD Dollars
               </FormDescription>
             </FormItem>
           )}
@@ -244,9 +244,9 @@ export default function TravelPlannerForm() {
                 </PopoverTrigger>
                 <PopoverContent className="w-[200px] p-0">
                   <Command>
-                    <CommandInput placeholder="Search language..." />
+                    <CommandInput placeholder="Search Activity..." />
                     <CommandList>
-                      <CommandEmpty>No language found.</CommandEmpty>
+                      <CommandEmpty>No Activity found.</CommandEmpty>
                       <CommandGroup>
                         {activities.map((activity) => (
                           <CommandItem

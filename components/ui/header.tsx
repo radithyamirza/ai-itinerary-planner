@@ -6,7 +6,7 @@ import Link from 'next/link';
 export default function Header() {
   return (
     <div className='w-full dark:bg-black py-2'>
-      <div className='w-10/12 mx-auto  flex justify-between items-center'>
+      <div className='w-11/12 mx-auto  flex justify-between items-center'>
         <Link href={'/'}>
             <h4 className='text-white text-2xl font-bold flex items-center'>
               <GiAstronautHelmet className='mr-4' />

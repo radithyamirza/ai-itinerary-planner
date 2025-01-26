@@ -31,6 +31,14 @@ import {
 import { useRouter } from "next/navigation";
 import { formSchema } from "@/server/schema";
 import { generateTripItinerary } from "@/server/ai";
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "@/components/ui/command";
 
 
 
@@ -212,7 +220,7 @@ export default function TravelPlannerForm() {
           )}
         />
 
-        <FormField
+<FormField
           control={form.control}
           name="activities"
           render={({ field }) => (
@@ -234,6 +242,64 @@ export default function TravelPlannerForm() {
                     </Button>
                   </FormControl>
                 </PopoverTrigger>
+                <PopoverContent className="w-[200px] p-0">
+                  <Command>
+                    <CommandInput placeholder="Search language..." />
+                    <CommandList>
+                      <CommandEmpty>No language found.</CommandEmpty>
+                      <CommandGroup>
+                        {activities.map((activity) => (
+                          <CommandItem
+                            value={activity.label}
+                            key={activity.value}
+                            onSelect={() => {
+                              if (
+                                currentlySelectedActivities.includes(
+                                  activity.label
+                                )
+                              ) {
+                                setCurrentlySelectedActivities(
+                                  currentlySelectedActivities.filter(
+                                    (a) => a !== activity.label
+                                  )
+                                );
+
+                                form.setValue(
+                                  "activities",
+                                  currentlySelectedActivities.filter(
+                                    (a) => a !== activity.label
+                                  )
+                                );
+                              } else {
+                                setCurrentlySelectedActivities([
+                                  ...currentlySelectedActivities,
+                                  activity.label,
+                                ]);
+
+                                form.setValue("activities", [
+                                  ...currentlySelectedActivities,
+                                  activity.label,
+                                ]);
+                              }
+                            }}
+                          >
+                            <Check
+                              className={cn(
+                                "mr-2 h-4 w-4",
+                                currentlySelectedActivities.includes(
+                                  activity.label
+                                )
+                                  ? "opacity-100"
+                                  : "opacity-0"
+                              )}
+                            />
+                            {activity.label}
+                          </CommandItem>
+                        ))}
+                      </CommandGroup>
+                    </CommandList>
+                  </Command>
+                </PopoverContent>
               </Popover>
               <FormDescription>
                 These are the activities you want to do on your trip.
@@ -242,7 +308,6 @@ export default function TravelPlannerForm() {
             </FormItem>
           )}
         />
-
         <FormField
           control={form.control}
           name="destination"

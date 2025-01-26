@@ -22,7 +22,8 @@ export async function generateTripItinerary(formData: z.infer<typeof formSchema>
 
     Could you create the travel itinerary with destination details for me?
 
-    The result should be an HTML list of days with the activities for each day. Please format the result as HTML.
+    The result should be an HTML list of days with the activities for each day. Please format the result as HTML,
+    such as adding unordered list HTML tag for each activity in the day and bold the text for each day title.
   `;
 
   const response = await fetch("https://api.openai.com/v1/chat/completions", {

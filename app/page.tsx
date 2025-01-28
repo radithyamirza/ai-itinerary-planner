@@ -1,9 +1,10 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { Loader2 } from "lucide-react";
 
 const World = dynamic(() => import("../components/ui/globe").then((m) => m.World), {
   ssr: false,
@@ -396,6 +397,12 @@ export default function Page() {
     },
   ];
 
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleClick = () => {
+    setIsLoading(true);
+  };
+
   return (
     <div className="flex flex-col items-center justify-center py-5 h-screen dark:bg-black relative w-full">
       <div className="flex flex-col justify-center items-center gap-3">
@@ -405,9 +412,17 @@ export default function Page() {
         <p className="text-center text-base md:text-lg font-normal text-neutral-700 dark:text-neutral-200 max-w-md mt-2 mx-auto">
           Plan it, make an unforgettable trip of your life.
         </p>
-        <Link href={"./travel-planner"}>
-          <Button>Plan my trip</Button>
-        </Link>
+      <Link href={isLoading ? "#" : "./travel-planner"} onClick={handleClick}>
+        <Button disabled={isLoading}>
+          {isLoading ? (
+            <>
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Loading...
+            </>
+          ) : (
+            "Plan my trip"
+          )}
+        </Button>
+      </Link>
       </div>
       <div className="max-w-7xl mx-auto w-full relative overflow-hidden h-full md:h-[40rem] px-4">
         <motion.div

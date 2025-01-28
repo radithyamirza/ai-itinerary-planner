@@ -7,7 +7,7 @@ import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { addDays, format } from "date-fns";
-import { Check, ChevronsUpDown } from "lucide-react";
+import { Check, ChevronsUpDown, Loader2 } from "lucide-react";
 
 import { CalendarIcon } from "@radix-ui/react-icons";
 import { cn } from "@/lib/utils";
@@ -76,6 +76,8 @@ export default function TravelPlannerForm() {
   const [currentlySelectedActivities, setCurrentlySelectedActivities] =
     useState<string[]>([]);
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -86,6 +88,7 @@ export default function TravelPlannerForm() {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
+      setIsLoading(true);
       const planId = await generateTripItinerary(values);
       router.push(`/plan/${planId}`);
     } catch (error) {
@@ -327,7 +330,14 @@ export default function TravelPlannerForm() {
         />
 
         <div className="flex gap-4">
-          <Button type="submit">Submit</Button>
+          <Button type="submit" disabled={isLoading}>
+          {isLoading ? (
+            <>
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Loading...
+            </>
+          ) : (
+            "Submit"
+          )}</Button>
           <Link href={"./"}>
             <Button variant="outline">Back</Button>
           </Link>
